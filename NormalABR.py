@@ -70,14 +70,12 @@ class NormalABR:
         elif (removableNode.right == None):
             self.modify(pNode, removableNode, removableNode.left)
         else:
-            minimumNode = self.minimum(removableNode.right)   #parametri
-            if (minimumNode):                                 #condizione if
-                self.modify(..., minimumNode, minimumNode.right)   #mi serve il padre
+            minimumNode, pMinimumNode = self.minimum(removableNode, removableNode.right)
+            if (pMinimumNode != removableNode):
+                self.modify(pMinimumNode, minimumNode, minimumNode.right)
                 minimumNode.right = removableNode.right
             self.modify(pNode, removableNode, minimumNode)
             minimumNode.left = removableNode.left
-
-
 
 
     def modify(self, pNode, removableNode, newNode):
@@ -89,9 +87,10 @@ class NormalABR:
             pNode.right = newNode
 
 
-    def minimum(self, newNode):            #devo fornire anche il padre
+    def minimum(self, pNode, newNode):
         if (newNode.left != None):
-            self.minimum(newNode.left)
-        return newNode
+            pNode = newNode
+            self.minimum(pNode, newNode.left)
+        return newNode, pNode
 
 
