@@ -94,3 +94,14 @@ class NormalABR:
         return newNode, pNode
 
 
+
+    def inorder(self):
+        self.inorderTree(self.root)
+
+
+    def inorderTree(self, node):
+        if (node != None):
+            self.inorderTree(node.left)
+            print(node.key)
+            self.inorderTree(node.right)
+
