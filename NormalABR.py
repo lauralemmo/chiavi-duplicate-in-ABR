@@ -6,10 +6,9 @@ class NormalABR:
     def __init__(self):
         self.root = None
 
+
     def setRoot(self, key):
         self.root = Node(key)
-
-
 
     def insert(self, key):
         if (self.root is None):
@@ -92,6 +91,7 @@ class NormalABR:
             pNode = newNode
             self.minimum(pNode, newNode.left)
         return newNode, pNode
+
 
 
 

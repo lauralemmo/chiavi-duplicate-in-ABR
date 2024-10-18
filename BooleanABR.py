@@ -16,13 +16,13 @@ class Node:
 
 
 class BooleanABR:
+
     def __init__(self):
         self.root = None
 
+
     def setRoot(self, key):
         self.root = Node(key)
-
-
 
     def insert(self, key):
         if (self.root is None):
