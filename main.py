@@ -1,3 +1,4 @@
+from BooleanABR import BooleanABR
 from NormalABR import NormalABR
 
 normalABR = NormalABR()
@@ -11,3 +12,5 @@ normalABR.inorder()
 normalABR.delete(4)
 print("\nalbero dopo cancellazione: ")
 normalABR.inorder()
+
+booleanABR = BooleanABR()
