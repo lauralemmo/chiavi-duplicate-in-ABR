@@ -119,3 +119,14 @@ class ListABR:
             pNode = newNode
             self.minimum(pNode, newNode.left)
         return newNode, pNode
+
+
+
+    def inorder(self):
+        self.inorderTree(self.root)
+
+    def inorderTree(self, list):
+        if (list != None):
+            self.inorderTree(list.left)
+            print(list.key)                #se vogliamo vedere quanti elementi ci sono per ogni lista,
+            self.inorderTree(list.right)   #dobbiamo cambiare questo print
