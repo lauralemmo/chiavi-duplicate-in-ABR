@@ -128,7 +128,8 @@ class ListABR:
     def inorderTree(self, list):
         if (list != None):
             self.inorderTree(list.left)
-            while(list.head != None):
+            node = list.head
+            while(node != None):
                 print(list.key)
-                list.head = list.head.next
+                node = node.next
             self.inorderTree(list.right)
