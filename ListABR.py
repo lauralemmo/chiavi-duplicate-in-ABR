@@ -128,5 +128,7 @@ class ListABR:
     def inorderTree(self, list):
         if (list != None):
             self.inorderTree(list.left)
-            print(list.key)                #se vogliamo vedere quanti elementi ci sono per ogni lista,
-            self.inorderTree(list.right)   #dobbiamo cambiare questo print
+            while(list.head != None):
+                print(list.key)
+                list.head = list.head.next
+            self.inorderTree(list.right)
