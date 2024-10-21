@@ -1,7 +1,3 @@
-#from Node import Node
-
-
-
 class Node:
 
     def __init__(self, key):
@@ -9,7 +5,6 @@ class Node:
         self.left = None
         self.right = None
         self.flag = True
-
 
 
 
@@ -29,29 +24,6 @@ class BooleanABR:
            self.setRoot(key)
         else:
             self.insertNode(self.root, key)
-
-    #def insertNode(self, currentNode, key):
-    #    if (key == currentNode.key):
-    #        if (currentNode.flag):
-    #            n = currentNode.left
-    #            currentNode.left = Node(key)
-    #            currentNode.left.left = n
-    #            currentNode.flag = False
-    #        else:
-    #            n = currentNode.right
-    #            currentNode.right = Node(key)
-    #            currentNode.right.right = n
-    #            currentNode.flag = True
-    #    elif (key < currentNode.key):
-    #        if (currentNode.left):
-    #            self.insertNode(currentNode.left, key)
-    #        else:
-    #            currentNode.left = Node(key)
-    #    elif (key > currentNode.key):
-    #        if (currentNode.right):
-    #            self.insertNode(currentNode.right, key)
-    #        else:
-    #            currentNode.right = Node(key)
 
     def insertNode(self, currentNode, key):
         if (key == currentNode.key):
@@ -140,6 +112,7 @@ class BooleanABR:
             pNode = newNode
             self.minimum(pNode, newNode.left)
         return newNode, pNode
+
 
 
 

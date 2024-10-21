@@ -1,20 +1,8 @@
-#from Node import Node
-
-
-#class Node:
-
-#    def __init__(self, key, init_data):
-#        self.key = key
-#        self.left = None
-#        self.right = None
-#        self.next = None
-
-
-
-
 class Node:
     def __init__(self):
         self.next = None
+
+
 
 
 class LinkedListNode:
@@ -34,9 +22,9 @@ class ListABR:
 
 
     def setRoot(self, key):
-        a = LinkedListNode(key)
-        self.root = a
-        a.head = Node()                               #METTI N AL POSTO DI A PER NODI E L PER LISTE
+        l = LinkedListNode(key)
+        self.root = l
+        l.head = Node()
 
     def insert(self, key):
         if (self.root is None):
@@ -46,20 +34,38 @@ class ListABR:
 
     def insertNode(self, currentList, key):
         if (key == currentList.key):
-            a = Node()
-            a.next = currentList.head     #aggiungo in testa
-            currentList.head = a
+            n = Node()
+            n.next = currentList.head           #aggiungo in testa
+            currentList.head = n
         elif (key < currentList.key):
             if (currentList.left):
                 self.insertNode(currentList.left, key)
             else:
-                a = LinkedListNode(key)
-                currentList.left = a
-                a.head = Node()
+                l = LinkedListNode(key)
+                currentList.left = l
+                l.head = Node()
         elif (key > currentList.key):
             if (currentList.right):
                 self.insertNode(currentList.right, key)
             else:
-                a = LinkedListNode(key)
-                currentList.right = a
-                a.head = Node()
+                l = LinkedListNode(key)
+                currentList.right = l
+                l.head = Node()
+
+
+
+    def find(self, key):
+        return self.findNode(self.root, key)
+
+    def findNode(self, currentList, key):
+        if (currentList is None):
+            return False
+        elif (key == currentList.key):
+            return True
+        elif (key < currentList.key):
+            return self.findNode(currentList.left, key)
+        else:
+            return self.findNode(currentList.right, key)
+
+
+
