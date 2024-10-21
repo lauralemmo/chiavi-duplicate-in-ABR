@@ -69,3 +69,53 @@ class ListABR:
 
 
 
+
+
+    def delete(self, key):
+        self.search(None, self.root, key)
+
+
+    def search(self, pList, currentList, key):
+        if (currentList is None):
+            return False
+        elif (currentList.key == key):
+            self.deleteNode(pList, currentList)
+        elif (key < currentList.key):
+            pList = currentList
+            self.search(pList, currentList.left, key)
+        else:
+            pList = currentList
+            self.search(pList, currentList.right, key)
+
+
+    def deleteNode(self, pList, listRemovableNode):
+        if (listRemovableNode.head.next == None):
+            if (listRemovableNode.left == None):
+                self.modify(pList, listRemovableNode, listRemovableNode.right)
+            elif (listRemovableNode.right == None):
+                self.modify(pList, listRemovableNode, listRemovableNode.left)
+            else:
+                minimumList, pMinimumList = self.minimum(listRemovableNode, listRemovableNode.right)
+                if (pMinimumList != listRemovableNode):
+                    self.modify(pMinimumList, minimumList, minimumList.right)
+                    minimumList.right = listRemovableNode.right
+                self.modify(pList, listRemovableNode, minimumList)
+                minimumList.left = listRemovableNode.left
+        else:
+            listRemovableNode.head = listRemovableNode.head.next
+
+
+    def modify(self, pList, listRemovableNode, newList):
+        if (pList is None):
+            self.root = newList
+        elif (listRemovableNode == pList.left):
+            pList.left = newList
+        else:
+            pList.right = newList
+
+
+    def minimum(self, pNode, newNode):
+        if (newNode.left != None):
+            pNode = newNode
+            self.minimum(pNode, newNode.left)
+        return newNode, pNode
