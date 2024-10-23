@@ -1,6 +1,9 @@
+import random
+
 from BooleanABR import BooleanABR
 from ListABR import ListABR
 from NormalABR import NormalABR
+from timeit import default_timer as timer
 
 normalABR = NormalABR()
 normalABR.insert(7)
@@ -49,3 +52,102 @@ print("\nalbero dopo cancellazione: ")
 listABR.inorder()
 print("\nnodo presente: ", listABR.find(12))
 print("\nnodo presente: ", listABR.find(1))
+
+
+
+
+
+
+
+print("\n\n\n\n")
+
+
+def tempoInserimentoNormalABR():
+    sommatempiInserimento = []
+    mediaTempi = []
+    for k in range(1, 10000):
+        albero = NormalABR()                  #VOGLIO CHE OGNI VOLTA SI RIPARTA DA UN NUOVO ALBERO VUOTO
+        for i in range(1, 100):              #NE INSERISCO 100 O UNO OGNI 10?
+            key = random.randint(0, 80)
+            start = timer()
+            albero.insert(key)
+            end = timer()
+            tEsecuzione = end - start
+
+            # if(k == 1):
+            #    sommatempiInserimento[i] = sommatempiInserimento[i-1] + tEsecuzione
+            # else:
+            #    sommatempiInserimento[i] += sommatempiInserimento[i - 1] + tEsecuzione
+
+            if(k == 1):
+                # sommatempiInserimento.append(tEsecuzione)
+                sommatempiInserimento[i] = tEsecuzione
+            else:
+                sommatempiInserimento[i] += tEsecuzione
+
+    for i in range(1, 100):
+        mediaTempi[i] = sommatempiInserimento[i] / 10000
+
+
+
+
+
+
+
+def tempoInserimentoBooleanABR():
+    sommatempiInserimento = []
+    mediaTempi = []
+    for k in range(1, 10000):
+        albero = BooleanABR()
+        for i in range(1, 100):
+            key = random.randint(0, 80)
+            start = timer()
+            albero.insert(key)
+            end = timer()
+            tEsecuzione = end - start
+
+            #if(k == 1):
+            #    sommatempiInserimento[i] = sommatempiInserimento[i-1] + tEsecuzione
+            #else:
+            #    sommatempiInserimento[i] += sommatempiInserimento[i - 1] + tEsecuzione
+
+            if(k == 1):
+                # sommatempiInserimento.append(tEsecuzione)
+                sommatempiInserimento[i] = tEsecuzione
+            else:
+                sommatempiInserimento[i] += tEsecuzione
+
+    for i in range(1, 100):
+        mediaTempi[i] = sommatempiInserimento[i] / 10000
+
+
+
+
+
+
+
+def tempoInserimentoListABR():
+    sommatempiInserimento = []
+    mediaTempi = []
+    for k in range(1, 10000):
+        albero = ListABR()
+        for i in range(1, 100):
+            key = random.randint(0, 80)
+            start = timer()
+            albero.insert(key)
+            end = timer()
+            tEsecuzione = end - start
+
+            #if(k == 1):
+            #    sommatempiInserimento[i] = sommatempiInserimento[i-1] + tEsecuzione
+            #else:
+            #    sommatempiInserimento[i] += sommatempiInserimento[i - 1] + tEsecuzione
+
+            if(k == 1):
+                # sommatempiInserimento.append(tEsecuzione)
+                sommatempiInserimento[i] = tEsecuzione
+            else:
+                sommatempiInserimento[i] += tEsecuzione
+
+    for i in range(1, 100):
+        mediaTempi[i] = sommatempiInserimento[i] / 10000
