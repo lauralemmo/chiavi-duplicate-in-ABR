@@ -1,4 +1,6 @@
 import random
+import matplotlib.pyplot as plt
+import numpy as np
 
 from BooleanABR import BooleanABR
 from ListABR import ListABR
@@ -65,9 +67,9 @@ print("\n\n\n\n")
 def tempoInserimentoNormalABR():
     sommatempiInserimento = []
     mediaTempi = []
-    for k in range(1, 10000):
+    for k in range(0, 10000):
         albero = NormalABR()                  #VOGLIO CHE OGNI VOLTA SI RIPARTA DA UN NUOVO ALBERO VUOTO
-        for i in range(1, 100):              #NE INSERISCO 100 O UNO OGNI 10?
+        for i in range(0, 100):              #NE INSERISCO 100 O UNO OGNI 10?
             key = random.randint(0, 80)
             start = timer()
             albero.insert(key)
@@ -79,14 +81,24 @@ def tempoInserimentoNormalABR():
             # else:
             #    sommatempiInserimento[i] += sommatempiInserimento[i - 1] + tEsecuzione
 
-            if(k == 1):
-                # sommatempiInserimento.append(tEsecuzione)
-                sommatempiInserimento[i] = tEsecuzione
+            if(k == 0):
+                sommatempiInserimento.append(tEsecuzione)
+                #sommatempiInserimento[i] = tEsecuzione
             else:
                 sommatempiInserimento[i] += tEsecuzione
 
-    for i in range(1, 100):
-        mediaTempi[i] = sommatempiInserimento[i] / 10000
+    for i in range(0, 100):
+        media = sommatempiInserimento[i] / 10000
+        mediaTempi.append(media)
+
+
+
+
+
+    x = np.arange(0, 100, 1)
+    y = mediaTempi
+    plt.plot(x, y)
+    plt.show()
 
 
 
@@ -151,3 +163,14 @@ def tempoInserimentoListABR():
 
     for i in range(1, 100):
         mediaTempi[i] = sommatempiInserimento[i] / 10000
+
+
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    tempoInserimentoNormalABR()
