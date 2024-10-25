@@ -64,107 +64,108 @@ print("\nnodo presente: ", listABR.find(1))
 print("\n\n\n\n")
 
 
+
+
+
+
+
+nRipetizioni = 100
+nElementi = 1000
+nMaxDisponibile = 650
+
+
+mediaTempi1 = []
 def tempoInserimentoNormalABR():
     sommatempiInserimento = []
-    mediaTempi = []
-    for k in range(0, 10000):
+    for k in range(0, nRipetizioni):
         albero = NormalABR()                  #VOGLIO CHE OGNI VOLTA SI RIPARTA DA UN NUOVO ALBERO VUOTO
-        for i in range(0, 100):              #NE INSERISCO 100 O UNO OGNI 10?
-            key = random.randint(0, 80)
+        for i in range(0, nElementi):
+            key = random.randint(0, nMaxDisponibile)
             start = timer()
             albero.insert(key)
             end = timer()
             tEsecuzione = end - start
 
-            # if(k == 1):
-            #    sommatempiInserimento[i] = sommatempiInserimento[i-1] + tEsecuzione
-            # else:
-            #    sommatempiInserimento[i] += sommatempiInserimento[i - 1] + tEsecuzione
-
             if(k == 0):
                 sommatempiInserimento.append(tEsecuzione)
-                #sommatempiInserimento[i] = tEsecuzione
             else:
                 sommatempiInserimento[i] += tEsecuzione
 
-    for i in range(0, 100):
-        media = sommatempiInserimento[i] / 10000
-        mediaTempi.append(media)
+    for i in range(0, nElementi):
+        media = sommatempiInserimento[i] / nRipetizioni
+        mediaTempi1.append(media)
 
 
-
-
-
-    x = np.arange(0, 100, 1)
-    y = mediaTempi
+def graficoInserimentoNormalABR():
+    x = np.arange(0, nElementi, 1)
+    y = mediaTempi1
     plt.plot(x, y)
+    plt.title('inserimento normal ABR')
     plt.show()
 
 
 
 
-
-
-
+mediaTempi2 = []
 def tempoInserimentoBooleanABR():
     sommatempiInserimento = []
-    mediaTempi = []
-    for k in range(1, 10000):
-        albero = BooleanABR()
-        for i in range(1, 100):
-            key = random.randint(0, 80)
+    for k in range(0, nRipetizioni):
+        albero = NormalABR()
+        for i in range(0, nElementi):
+            key = random.randint(0, nMaxDisponibile)
             start = timer()
             albero.insert(key)
             end = timer()
             tEsecuzione = end - start
 
-            #if(k == 1):
-            #    sommatempiInserimento[i] = sommatempiInserimento[i-1] + tEsecuzione
-            #else:
-            #    sommatempiInserimento[i] += sommatempiInserimento[i - 1] + tEsecuzione
-
-            if(k == 1):
-                # sommatempiInserimento.append(tEsecuzione)
-                sommatempiInserimento[i] = tEsecuzione
+            if (k == 0):
+                sommatempiInserimento.append(tEsecuzione)
             else:
                 sommatempiInserimento[i] += tEsecuzione
 
-    for i in range(1, 100):
-        mediaTempi[i] = sommatempiInserimento[i] / 10000
+    for i in range(0, nElementi):
+        media = sommatempiInserimento[i] / nRipetizioni
+        mediaTempi2.append(media)
+
+
+def graficoInserimentoBooleanABR():
+    x = np.arange(0, nElementi, 1)
+    y = mediaTempi2
+    plt.plot(x, y)
+    plt.title('inserimento boolean ABR')
+    plt.show()
 
 
 
 
-
-
-
+mediaTempi3 = []
 def tempoInserimentoListABR():
     sommatempiInserimento = []
-    mediaTempi = []
-    for k in range(1, 10000):
-        albero = ListABR()
-        for i in range(1, 100):
-            key = random.randint(0, 80)
+    for k in range(0, nRipetizioni):
+        albero = NormalABR()
+        for i in range(0, nElementi):
+            key = random.randint(0, nMaxDisponibile)
             start = timer()
             albero.insert(key)
             end = timer()
             tEsecuzione = end - start
 
-            #if(k == 1):
-            #    sommatempiInserimento[i] = sommatempiInserimento[i-1] + tEsecuzione
-            #else:
-            #    sommatempiInserimento[i] += sommatempiInserimento[i - 1] + tEsecuzione
-
-            if(k == 1):
-                # sommatempiInserimento.append(tEsecuzione)
-                sommatempiInserimento[i] = tEsecuzione
+            if (k == 0):
+                sommatempiInserimento.append(tEsecuzione)
             else:
                 sommatempiInserimento[i] += tEsecuzione
 
-    for i in range(1, 100):
-        mediaTempi[i] = sommatempiInserimento[i] / 10000
+    for i in range(0, nElementi):
+        media = sommatempiInserimento[i] / nRipetizioni
+        mediaTempi3.append(media)
 
 
+def graficoInserimentoListABR():
+    x = np.arange(0, nElementi, 1)
+    y = mediaTempi3
+    plt.plot(x, y)
+    plt.title('inserimento list ABR')
+    plt.show()
 
 
 
@@ -174,3 +175,8 @@ def tempoInserimentoListABR():
 
 if __name__ == '__main__':
     tempoInserimentoNormalABR()
+    graficoInserimentoNormalABR()
+    tempoInserimentoBooleanABR()
+    graficoInserimentoBooleanABR()
+    tempoInserimentoListABR()
+    graficoInserimentoListABR()
