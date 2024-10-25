@@ -1,3 +1,6 @@
+import random
+
+
 class Node:
 
     def __init__(self, key):
@@ -54,21 +57,29 @@ class NormalABR:
 
 
 
-    def delete(self, key):
-        self.search(None, self.root, key)
+    def search(self, key):
+        self.searchNode(None, self.root, key)
 
 
-    def search(self, pNode, currentNode, key):
+    def searchNode(self, pNode, currentNode, key):
         if (currentNode is None):
             return False
-        elif (currentNode.key == key):
-            self.deleteNode(pNode, currentNode)
+        elif (key == currentNode.key):
+            return pNode, currentNode
         elif (key < currentNode.key):
             pNode = currentNode
-            self.search(pNode, currentNode.left, key)
-        else:
+            return self.searchNode(pNode, currentNode.left, key)
+        elif(key > currentNode.key):
             pNode = currentNode
-            self.search(pNode, currentNode.right, key)
+            return self.searchNode(pNode, currentNode.right, key)
+
+
+    def delete(self, key):
+        if(self.search(key) == None):
+            return None
+        else:
+            pNode, removableNode = self.search(key)
+            self.deleteNode(pNode, removableNode)
 
 
     def deleteNode(self, pNode, removableNode):
@@ -111,4 +122,15 @@ class NormalABR:
             self.inorderTree(node.left)
             print(node.key)
             self.inorderTree(node.right)
+
+
+
+
+
+
+
+    def creazioneAlbero(self, nElementi, nMaxDisponibile):
+        for i in range (0, nElementi):
+            n = random.randint(0, nMaxDisponibile)
+            self.insert(n)
 
