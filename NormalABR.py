@@ -58,7 +58,7 @@ class NormalABR:
 
 
     def search(self, key):
-        self.searchNode(None, self.root, key)
+        return self.searchNode(None, self.root, key)
 
 
     def searchNode(self, pNode, currentNode, key):
@@ -75,7 +75,7 @@ class NormalABR:
 
 
     def delete(self, key):
-        if(self.search(key) == None):
+        if(self.search(key) == False):                       #COSA CAMBIA TRA NONE E FALSE?
             return None
         else:
             pNode, removableNode = self.search(key)
@@ -129,8 +129,8 @@ class NormalABR:
 
 
 
-    def creazioneAlbero(self, nElementi, nMaxDisponibile):
-        for i in range (0, nElementi):
-            n = random.randint(0, nMaxDisponibile)
-            self.insert(n)
+    #def creazioneAlbero(self, nElementi, nMaxDisponibile):
+    #    for i in range (0, nElementi):
+    #        n = random.randint(0, nMaxDisponibile)
+    #        self.insert(n)
 

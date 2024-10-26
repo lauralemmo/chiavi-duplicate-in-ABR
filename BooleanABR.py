@@ -1,3 +1,5 @@
+import random
+
 class Node:
 
     def __init__(self, key):
@@ -21,7 +23,7 @@ class BooleanABR:
 
     def insert(self, key):
         if (self.root is None):
-           self.setRoot(key)
+            self.setRoot(key)
         else:
             self.insertNode(self.root, key)
 
@@ -76,12 +78,13 @@ class BooleanABR:
             return False
         elif (currentNode.key == key):
             self.deleteNode(pNode, currentNode)
+            return True
         elif (key < currentNode.key):
             pNode = currentNode
-            self.search(pNode, currentNode.left, key)
+            return self.search(pNode, currentNode.left, key)
         else:
             pNode = currentNode
-            self.search(pNode, currentNode.right, key)
+            return self.search(pNode, currentNode.right, key)
 
 
     def deleteNode(self, pNode, removableNode):
@@ -110,8 +113,9 @@ class BooleanABR:
     def minimum(self, pNode, newNode):
         if (newNode.left != None):
             pNode = newNode
-            self.minimum(pNode, newNode.left)
-        return newNode, pNode
+            return self.minimum(pNode, newNode.left)
+        else:
+            return newNode, pNode
 
 
 
@@ -125,3 +129,9 @@ class BooleanABR:
             self.inorderTree(node.left)
             print(node.key)
             self.inorderTree(node.right)
+
+
+    def creazioneAlbero(self, nElementi, nMaxDisponibile):
+        for i in range (0, nElementi):
+            n = random.randint(0, nMaxDisponibile)
+            self.insert(n)
