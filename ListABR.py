@@ -5,12 +5,14 @@ class Node:
 
 
 
+
 class LinkedListNode:
     def __init__(self, key):
         self.key = key
         self.left = None
         self.right = None
         self.head = None
+
 
 
 
@@ -70,13 +72,13 @@ class ListABR:
 
 
 
-
     def delete(self, key):
         self.search(None, self.root, key)
 
 
     def search(self, pList, currentList, key):
         if (currentList is None):
+            print("nodo da cancellare non presente")
             return False
         elif (currentList.key == key):
             self.deleteNode(pList, currentList)
@@ -119,6 +121,7 @@ class ListABR:
             pNode = newNode
             self.minimum(pNode, newNode.left)
         return newNode, pNode
+
 
 
 

@@ -1,6 +1,3 @@
-import random
-
-
 class Node:
 
     def __init__(self, key):
@@ -57,29 +54,23 @@ class NormalABR:
 
 
 
-    def search(self, key):
-        return self.searchNode(None, self.root, key)
+    def delete(self, key):
+        self.search(None, self.root, key)
 
 
-    def searchNode(self, pNode, currentNode, key):
+    def search(self, pNode, currentNode, key):
         if (currentNode is None):
+            print("nodo da cancellare non presente")
             return False
         elif (key == currentNode.key):
-            return pNode, currentNode
+            self.deleteNode(pNode, currentNode)
+            return True
         elif (key < currentNode.key):
             pNode = currentNode
-            return self.searchNode(pNode, currentNode.left, key)
-        elif(key > currentNode.key):
-            pNode = currentNode
-            return self.searchNode(pNode, currentNode.right, key)
-
-
-    def delete(self, key):
-        if(self.search(key) == False):                       #COSA CAMBIA TRA NONE E FALSE?
-            return None
+            return self.search(pNode, currentNode.left, key)
         else:
-            pNode, removableNode = self.search(key)
-            self.deleteNode(pNode, removableNode)
+            pNode = currentNode
+            return self.search(pNode, currentNode.right, key)
 
 
     def deleteNode(self, pNode, removableNode):
@@ -108,8 +99,9 @@ class NormalABR:
     def minimum(self, pNode, newNode):
         if (newNode.left != None):
             pNode = newNode
-            self.minimum(pNode, newNode.left)
-        return newNode, pNode
+            return self.minimum(pNode, newNode.left)
+        else:
+            return newNode, pNode
 
 
 
@@ -122,15 +114,3 @@ class NormalABR:
             self.inorderTree(node.left)
             print(node.key)
             self.inorderTree(node.right)
-
-
-
-
-
-
-
-    #def creazioneAlbero(self, nElementi, nMaxDisponibile):
-    #    for i in range (0, nElementi):
-    #        n = random.randint(0, nMaxDisponibile)
-    #        self.insert(n)
-

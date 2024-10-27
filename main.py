@@ -7,8 +7,7 @@ from ListABR import ListABR
 from NormalABR import NormalABR
 from timeit import default_timer as timer
 
-#import sys
-#sys.setrecursionlimit(10**6)
+
 
 normalABR = NormalABR()
 normalABR.insert(7)
@@ -19,9 +18,7 @@ normalABR.insert(8)
 normalABR.insert(7)
 print("albero ordinato: ")
 normalABR.inorder()
-normalABR.search(4)
 normalABR.delete(4)
-normalABR.search(2)
 normalABR.delete(2)
 print("\nalbero dopo cancellazione: ")
 normalABR.inorder()
@@ -35,7 +32,7 @@ booleanABR.insert(5)
 booleanABR.insert(8)
 print("\nalbero ordinato: ")
 booleanABR.inorder()
-booleanABR.delete(8)                     #DEVO METTERE ANCHE SEARCH    E SE PROVO A CANCELLARE UN NODO NON PRESENTE?
+booleanABR.delete(8)
 print("\nalbero dopo cancellazione: ")
 booleanABR.inorder()
 booleanABR.insert(3)
@@ -54,7 +51,7 @@ listABR.insert(11)
 listABR.insert(11)
 print("\nalbero ordinato: ")
 listABR.inorder()
-listABR.delete(11)                #ANCHE SEARCH
+listABR.delete(11)
 listABR.delete(11)
 print("\nalbero dopo cancellazione: ")
 listABR.inorder()
@@ -65,11 +62,7 @@ print("\nnodo presente: ", listABR.find(1))
 
 
 
-
-
 print("\n\n\n\n")
-
-
 
 
 
@@ -82,9 +75,9 @@ nMaxDisponibile = 650
 
 mediaTempi1 = []
 def tempoInserimentoNormalABR():
-    sommatempiInserimento = []
+    sommaTempiInserimento = []
     for k in range(0, nRipetizioni):
-        albero1 = NormalABR()                  #VOGLIO CHE OGNI VOLTA SI RIPARTA DA UN NUOVO ALBERO VUOTO
+        albero1 = NormalABR()          # ogni volta si riparte da un albero vuoto e si inseriscono esattamente 'nElementi' elementi
         for i in range(0, nElementi):
             key = random.randint(0, nMaxDisponibile)
             start = timer()
@@ -93,12 +86,12 @@ def tempoInserimentoNormalABR():
             tEsecuzione = end - start
 
             if(k == 0):
-                sommatempiInserimento.append(tEsecuzione)
+                sommaTempiInserimento.append(tEsecuzione)
             else:
-                sommatempiInserimento[i] += tEsecuzione
+                sommaTempiInserimento[i] += tEsecuzione
 
     for i in range(0, nElementi):
-        media = sommatempiInserimento[i] / nRipetizioni
+        media = sommaTempiInserimento[i] / nRipetizioni
         mediaTempi1.append(media)
 
 
@@ -114,7 +107,7 @@ def graficoInserimentoNormalABR():
 
 mediaTempi2 = []
 def tempoInserimentoBooleanABR():
-    sommatempiInserimento = []
+    sommaTempiInserimento = []
     for k in range(0, nRipetizioni):
         albero2 = BooleanABR()
         for i in range(0, nElementi):
@@ -125,12 +118,12 @@ def tempoInserimentoBooleanABR():
             tEsecuzione = end - start
 
             if (k == 0):
-                sommatempiInserimento.append(tEsecuzione)
+                sommaTempiInserimento.append(tEsecuzione)
             else:
-                sommatempiInserimento[i] += tEsecuzione
+                sommaTempiInserimento[i] += tEsecuzione
 
     for i in range(0, nElementi):
-        media = sommatempiInserimento[i] / nRipetizioni
+        media = sommaTempiInserimento[i] / nRipetizioni
         mediaTempi2.append(media)
 
 
@@ -146,7 +139,7 @@ def graficoInserimentoBooleanABR():
 
 mediaTempi3 = []
 def tempoInserimentoListABR():
-    sommatempiInserimento = []
+    sommaTempiInserimento = []
     for k in range(0, nRipetizioni):
         albero3 = ListABR()
         for i in range(0, nElementi):
@@ -157,12 +150,12 @@ def tempoInserimentoListABR():
             tEsecuzione = end - start
 
             if (k == 0):
-                sommatempiInserimento.append(tEsecuzione)
+                sommaTempiInserimento.append(tEsecuzione)
             else:
-                sommatempiInserimento[i] += tEsecuzione
+                sommaTempiInserimento[i] += tEsecuzione
 
     for i in range(0, nElementi):
-        media = sommatempiInserimento[i] / nRipetizioni
+        media = sommaTempiInserimento[i] / nRipetizioni
         mediaTempi3.append(media)
 
 
@@ -176,80 +169,52 @@ def graficoInserimentoListABR():
 
 
 
+mediaTempi4 = []
+def tempoCancellazioneNormalABR():
+    sommaTempiCancellazione = []
+    for k in range(0, nRipetizioni):
+        albero4 = NormalABR()
+        for i in range(0, nElementi):
+            key = random.randint(0, nMaxDisponibile)
+            albero4.insert(key)
+            start = timer()
+            albero4.delete(key)
+            end = timer()
+            albero4.insert(key)
+            tEsecuzione = end - start
+
+            if (k == 0):
+                sommaTempiCancellazione.append(tEsecuzione)
+            else:
+                sommaTempiCancellazione[i] += tEsecuzione
+
+    for i in range(0, nElementi):
+        media = sommaTempiCancellazione[i] / nRipetizioni
+        mediaTempi4.append(media)
 
 
-
-
-
-
-
-
-#mediaTempi4 = []
-#def tempoCancellazioneNormalABR():
-#    sommaTempiCancellazione = []
-#    for k in range(0, nRipetizioni):
-#        albero = NormalABR()                    #VOGLIO CHE OGNI VOLTA SI RIPARTA DA UN ALBERO NUOVO
-#        albero.creazioneAlbero(nElementi, nMaxDisponibile)
-#        for i in range(0, nElementi):
-#            key = random.randint(0, nMaxDisponibile)
-#            start = timer()
-#            albero.search(key)
-#            albero.delete(key)
-#            end = timer()
-#            tEsecuzione = end - start
-
-#            if(k == 0):
-#                sommaTempiCancellazione.append(tEsecuzione)
-#            else:
-#                sommaTempiCancellazione[i] += tEsecuzione
-#
-#    for i in range(0, nElementi):
-#        media = sommaTempiCancellazione[i] / nRipetizioni
-#        mediaTempi4.append(media)
-
-
-#def graficoCancellazioneNormalABR():
-#    x = np.arange(0, nElementi, 1)
-#    y = mediaTempi4
-#    plt.plot(x, y)
-#    plt.title('cancellazione normal ABR')
-#    plt.show()
-
-
-
-
-
-#CORREGGI I DELETE E I SEARCH SIA QUI SIA NELLE CLASSI BOOLEAN E LIST CHE ANCORA NON HO CAMBIATO
-#LE DEVO METTERE COME NORMAL
-
-
-
-
-
-
-#def creazioneAlbero(nElementi, nMaxDisponibile):
-#    alberoProva = BooleanABR()
-#    for i in range (0, nElementi):
-#        n = random.randint(0, nMaxDisponibile)
-#        alberoProva.insert(n)
-#    return alberoProva
-
+def graficoCancellazioneNormalABR():
+    x = np.arange(0, nElementi, 1)
+    y = mediaTempi4
+    plt.plot(x, y)
+    plt.title('cancellazione normal ABR')
+    plt.show()
 
 
 
 
 mediaTempi5 = []
-def tempoCancellazioneBooleanABRsbagliato():
+def tempoCancellazioneBooleanABR():
     sommaTempiCancellazione = []
     for k in range(0, nRipetizioni):
-        nuovoAlbero = BooleanABR()
-        nuovoAlbero.creazioneAlbero(nElementi, nMaxDisponibile)
-        #alberoxx = creazioneAlbero(nElementi, nMaxDisponibile)
+        albero5 = BooleanABR()
         for i in range(0, nElementi):
             key = random.randint(0, nMaxDisponibile)
+            albero5.insert(key)
             start = timer()
-            nuovoAlbero.delete(key)
+            albero5.delete(key)
             end = timer()
+            albero5.insert(key)
             tEsecuzione = end - start
 
             if (k == 0):
@@ -262,21 +227,46 @@ def tempoCancellazioneBooleanABRsbagliato():
         mediaTempi5.append(media)
 
 
-def graficoCancellazioneBooleanABRsbagliato():
+def graficoCancellazioneBooleanABR():
     x = np.arange(0, nElementi, 1)
     y = mediaTempi5
     plt.plot(x, y)
-    plt.title('cancellazione boolean ABR sbagliato')
+    plt.title('cancellazione boolean ABR')
     plt.show()
 
 
 
 
+mediaTempi6 = []
+def tempoCancellazioneListABR():
+    sommaTempiCancellazione = []
+    for k in range(0, nRipetizioni):
+        albero6 = ListABR()
+        for i in range(0, nElementi):
+            key = random.randint(0, nMaxDisponibile)
+            albero6.insert(key)
+            start = timer()
+            albero6.delete(key)
+            end = timer()
+            albero6.insert(key)
+            tEsecuzione = end - start
 
-#RIMETTI LE FUNZIONI PER CANCELLARE IN NORMAL ABR COME ERANO PRIMA. DOVREBBE ESSERE IDENTICO A BOOLEAN ABR
-#PROVO CON INSERT DELETE INSERT DENTRO IL CICLO FOR I
+            if (k == 0):
+                sommaTempiCancellazione.append(tEsecuzione)
+            else:
+                sommaTempiCancellazione[i] += tEsecuzione
+
+    for i in range(0, nElementi):
+        media = sommaTempiCancellazione[i] / nRipetizioni
+        mediaTempi6.append(media)
 
 
+def graficoCancellazioneListABR():
+    x = np.arange(0, nElementi, 1)
+    y = mediaTempi6
+    plt.plot(x, y)
+    plt.title('cancellazione list ABR')
+    plt.show()
 
 
 
@@ -290,7 +280,9 @@ if __name__ == '__main__':
     graficoInserimentoBooleanABR()
     tempoInserimentoListABR()
     graficoInserimentoListABR()
-    #tempoCancellazioneNormalABR()
-    #graficoCancellazioneNormalABR()
-    tempoCancellazioneBooleanABRsbagliato()
-    graficoCancellazioneBooleanABRsbagliato()
+    tempoCancellazioneNormalABR()
+    graficoCancellazioneNormalABR()
+    tempoCancellazioneBooleanABR()
+    graficoCancellazioneBooleanABR()
+    tempoCancellazioneListABR()
+    graficoCancellazioneListABR()

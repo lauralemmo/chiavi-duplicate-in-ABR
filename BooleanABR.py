@@ -53,6 +53,7 @@ class BooleanABR:
                 currentNode.right = Node(key)
 
 
+
     def find(self, key):
         return self.findNode(self.root, key)
 
@@ -75,6 +76,7 @@ class BooleanABR:
 
     def search(self, pNode, currentNode, key):
         if (currentNode is None):
+            print("nodo da cancellare non presente")
             return False
         elif (currentNode.key == key):
             self.deleteNode(pNode, currentNode)
@@ -123,12 +125,12 @@ class BooleanABR:
     def inorder(self):
         self.inorderTree(self.root)
 
-
     def inorderTree(self, node):
         if (node != None):
             self.inorderTree(node.left)
             print(node.key)
             self.inorderTree(node.right)
+
 
 
     def creazioneAlbero(self, nElementi, nMaxDisponibile):
