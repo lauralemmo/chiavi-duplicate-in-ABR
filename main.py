@@ -69,7 +69,7 @@ print("\n\n\n\n")
 
 
 nRipetizioni = 2000
-nElementi = 900
+nElementi = 1000
 nMaxDisponibile = 650
 
 
