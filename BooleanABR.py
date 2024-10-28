@@ -130,10 +130,3 @@ class BooleanABR:
             self.inorderTree(node.left)
             print(node.key)
             self.inorderTree(node.right)
-
-
-
-    def creazioneAlbero(self, nElementi, nMaxDisponibile):
-        for i in range (0, nElementi):
-            n = random.randint(0, nMaxDisponibile)
-            self.insert(n)
