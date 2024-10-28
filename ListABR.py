@@ -117,12 +117,12 @@ class ListABR:
             pList.right = newList
 
 
-    def minimum(self, pNode, newNode):
-        if (newNode.left != None):
-            pNode = newNode
-            return self.minimum(pNode, newNode.left)
+    def minimum(self, pList, newList):
+        if (newList.left != None):
+            pList = newList
+            return self.minimum(pList, newList.left)
         else:
-            return newNode, pNode
+            return newList, pList
 
 
 
