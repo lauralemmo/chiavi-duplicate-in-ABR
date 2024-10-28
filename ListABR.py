@@ -82,12 +82,13 @@ class ListABR:
             return False
         elif (currentList.key == key):
             self.deleteNode(pList, currentList)
+            return True
         elif (key < currentList.key):
             pList = currentList
-            self.search(pList, currentList.left, key)
+            return self.search(pList, currentList.left, key)
         else:
             pList = currentList
-            self.search(pList, currentList.right, key)
+            return self.search(pList, currentList.right, key)
 
 
     def deleteNode(self, pList, listRemovableNode):
@@ -119,8 +120,9 @@ class ListABR:
     def minimum(self, pNode, newNode):
         if (newNode.left != None):
             pNode = newNode
-            self.minimum(pNode, newNode.left)
-        return newNode, pNode
+            return self.minimum(pNode, newNode.left)
+        else:
+            return newNode, pNode
 
 
 
