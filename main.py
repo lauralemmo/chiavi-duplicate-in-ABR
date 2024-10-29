@@ -77,7 +77,7 @@ mediaTempi1 = []
 def tempoInserimentoNormalABR():
     sommaTempiInserimento = []
     for k in range(0, nRipetizioni):
-        albero1 = NormalABR()          # ogni volta si riparte da un albero vuoto e si inseriscono esattamente 'nElementi' elementi
+        albero1 = NormalABR()     # ogni volta si riparte da un albero vuoto e si inseriscono esattamente 'nElementi' elementi
         for i in range(0, nElementi):
             key = random.randint(0, nMaxDisponibile)
             start = timer()
@@ -98,7 +98,7 @@ def tempoInserimentoNormalABR():
 def graficoInserimentoNormalABR():
     x = np.arange(0, nElementi, 1)
     y = mediaTempi1
-    plt.plot(x, y)
+    plt.plot(x, y, color="red")
     plt.title('inserimento normal ABR')
     plt.show()
 
@@ -130,7 +130,7 @@ def tempoInserimentoBooleanABR():
 def graficoInserimentoBooleanABR():
     x = np.arange(0, nElementi, 1)
     y = mediaTempi2
-    plt.plot(x, y)
+    plt.plot(x, y, color="blue")
     plt.title('inserimento boolean ABR')
     plt.show()
 
@@ -162,7 +162,7 @@ def tempoInserimentoListABR():
 def graficoInserimentoListABR():
     x = np.arange(0, nElementi, 1)
     y = mediaTempi3
-    plt.plot(x, y)
+    plt.plot(x, y, color="green")
     plt.title('inserimento list ABR')
     plt.show()
 
@@ -196,7 +196,7 @@ def tempoCancellazioneNormalABR():
 def graficoCancellazioneNormalABR():
     x = np.arange(0, nElementi, 1)
     y = mediaTempi4
-    plt.plot(x, y)
+    plt.plot(x, y, color="red")
     plt.title('cancellazione normal ABR')
     plt.show()
 
@@ -230,7 +230,7 @@ def tempoCancellazioneBooleanABR():
 def graficoCancellazioneBooleanABR():
     x = np.arange(0, nElementi, 1)
     y = mediaTempi5
-    plt.plot(x, y)
+    plt.plot(x, y, color="blue")
     plt.title('cancellazione boolean ABR')
     plt.show()
 
@@ -264,7 +264,7 @@ def tempoCancellazioneListABR():
 def graficoCancellazioneListABR():
     x = np.arange(0, nElementi, 1)
     y = mediaTempi6
-    plt.plot(x, y)
+    plt.plot(x, y, color="green")
     plt.title('cancellazione list ABR')
     plt.show()
 
