@@ -271,6 +271,33 @@ def graficoCancellazioneListABR():
 
 
 
+def graficiInserimento():
+    x = np.arange(0, nElementi, 1)
+    y1 = mediaTempi1
+    y2 = mediaTempi2
+    y3 = mediaTempi3
+    plt.plot(x, y1)
+    plt.plot(x, y2)
+    plt.plot(x, y3)
+    plt.title('inserimenti in ABR')
+    plt.legend(['normal abr', 'boolean abr', 'list abr'])
+    plt.show()
+
+
+def graficiCancellazione():
+    x = np.arange(0, nElementi, 1)
+    y1 = mediaTempi4
+    y2 = mediaTempi5
+    y3 = mediaTempi6
+    plt.plot(x, y1)
+    plt.plot(x, y2)
+    plt.plot(x, y3)
+    plt.title('cancellazioni in ABR')
+    plt.legend(['normal abr', 'boolean abr', 'list abr'])
+    plt.show()
+
+
+
 
 
 if __name__ == '__main__':
@@ -286,3 +313,5 @@ if __name__ == '__main__':
     graficoCancellazioneBooleanABR()
     tempoCancellazioneListABR()
     graficoCancellazioneListABR()
+    graficiInserimento()
+    graficiCancellazione()
